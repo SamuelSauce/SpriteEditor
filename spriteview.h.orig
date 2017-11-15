@@ -1,0 +1,55 @@
+#ifndef SPRITEVIEW_H
+#define SPRITEVIEW_H
+
+#include <QMainWindow>
+#include "spritecanvas.h"
+#include "sprite.h"
+
+
+
+namespace Ui {
+class SpriteView;
+}
+
+class SpriteView : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit SpriteView(sprite &sprObject, QWidget *parent = 0);
+    ~SpriteView();
+
+private slots:
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void updateList(int numFrames, int selectedFrame);
+
+<<<<<<< HEAD
+    void on_listWidget_clicked(const QModelIndex &index);
+
+    void on_addButton_clicked();
+=======
+    void on_saveButton_2_clicked();
+
+    void on_saveButton_clicked();
+>>>>>>> fa910da24279d52eabbc15fa299a981ab8ba7cf4
+
+signals:
+    void load(QString fullFilename);
+    void changeActiveFrame(QImage&, int);
+    void addFrame(QImage&);
+
+    void save(QString fullFilename, QImage activeImage);
+
+private:
+    Ui::SpriteView *ui;
+    void createMenus();
+
+    SpriteCanvas* canvas;
+    void init();
+
+};
+
+#endif // SPRITEVIEW_H

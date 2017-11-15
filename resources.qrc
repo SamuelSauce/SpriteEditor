@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>Images/Icons/square.png</file>
+        <file>Images/Icons/onion (1).png</file>
+        <file>Images/Icons/paintcan.png</file>
+        <file>Images/Icons/spriteTitle.png</file>
+        <file>Images/Icons/save.png</file>
+        <file>Images/Icons/undo_on.png</file>
+        <file>Images/Icons/undo_off.png</file>
+        <file>Images/Icons/add_on.png</file>
+        <file>Images/Icons/add_off.png</file>
+        <file>Images/Icons/undo-arrow.png</file>
+        <file>Images/Icons/add.png</file>
+        <file>Images/Icons/paint-palette (1).png</file>
+        <file>Images/Icons/menu.png</file>
+        <file>Images/Icons/eraser.png</file>
+        <file>Images/Icons/drag.png</file>
+        <file>Images/Icons/edit.png</file>
+        <file>Images/Temp/zelda.png</file>
+        <file>Images/Temp/mario.png</file>
+        <file>Images/Temp/pizza.png</file>
+        <file>Images/Temp/pickelrick.png</file>
+        <file>Images/Temp/deadpool.png</file>
+        <file>Images/Temp/heart.png</file>
+        <file>Images/Icons/blank-file.png</file>
+        <file>Images/Icons/video-camera.png</file>
+        <file>Images/Icons/open-folder-outline.png</file>
+        <file>Images/Icons/stop.png</file>
+        <file>Images/Icons/play-button.png</file>
+        <file>Images/Icons/checked.png</file>
+    </qresource>
+</RCC>

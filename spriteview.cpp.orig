@@ -1,0 +1,111 @@
+#include "spriteview.h"
+#include "ui_spriteview.h"
+#include "sprite.h"
+#include <QDesktopWidget>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QDebug>
+#include <QPushButton>
+
+SpriteView::SpriteView(sprite &sprObject, QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::SpriteView)
+{
+    ui->setupUi(this);
+    init();
+
+    ui->listWidget->addItem("Frame 1");
+    ui->listWidget->setCurrentRow(0);
+
+    connect(&sprObject, &sprite::updateFrame, ui->canvas, &SpriteCanvas::setImage);
+    connect(this, &SpriteView::load, &sprObject, &sprite::load);
+    connect(&sprObject, &sprite::updateList, this, &SpriteView::updateList);
+<<<<<<< HEAD
+    connect(this, &SpriteView::changeActiveFrame, &sprObject, &sprite::updateActiveFrame);
+    connect(this, &SpriteView::addFrame, &sprObject, &sprite::addFrame);
+=======
+    connect(ui->listWidget, &QListWidget::itemClicked, &sprObject, &sprite::changeActiveFrame);
+    connect(this, &SpriteView::save, &sprObject, &sprite::save);
+    connect(ui->addButton, &QPushButton::clicked, &sprObject, &sprite::addFrame);
+    connect(ui->addButton, &QPushButton::clicked, &sprObject, &sprite::addFrame);
+>>>>>>> fa910da24279d52eabbc15fa299a981ab8ba7cf4
+}
+
+SpriteView::~SpriteView()
+{
+    delete ui;
+}
+
+void SpriteView::init()
+{
+    QDesktopWidget dw;
+    //resize(dw.width()*0.9,dw.height()*0.8);
+
+}
+
+void SpriteView::updateList(int numFrames, int selectedFrame) {
+    ui->listWidget->clear();
+    for (int i = 0; i < numFrames; i++) {
+        ui->listWidget->addItem("Frame " + QString::number(i+1));
+    }
+    ui->listWidget->setCurrentRow(selectedFrame);
+}
+
+void SpriteView::on_pushButton_4_clicked()
+{
+    //XTODO: Move this code out of the view.
+    QString filepath = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("PNG files (*.png)"));
+    QRegularExpression fileCheck(".+_\\d+[xX]\\d+.png"); // This regex is looking for any characters followed by an underscore, then digits, then an x, then more digits, then .png
+    if (!fileCheck.match(filepath).hasMatch()) {
+        QMessageBox::information(this, "Incorrect file format", "Please ensure file format is filename_[width]x[height].png");
+        return;
+    }
+    emit load(filepath);
+
+//    QImage loaded;
+//    QRegularExpression regEx("");
+//    QString filename = filepath.split('/')[filepath.split('/').size()-1];
+//    filename = filename.remove(filename.size()-4, 4);
+//    filename = filename.split('_')[filename.split('_').size()-1];
+//    int frameWidth = filename.split('x')[0].toInt();
+//    if (loaded.load(filepath, "PNG")) {
+//        //for (int i = 0; i < loaded.width()/frameWidth; i++) {
+//        //
+//        //}
+
+//        QImage firstFrame = loaded.copy(0, 0, frameWidth, loaded.height());
+//        ui->canvas->setImage(firstFrame);
+//    } else {
+//        QMessageBox::information(this, "File failed to load", "Couldn't load file " + filepath);
+//    }
+}
+
+void SpriteView::on_pushButton_3_clicked()
+{
+
+}
+
+void SpriteView::on_saveButton_clicked()
+{
+    //Save to .ssp
+    //This only works with the image on canvas. We currently do not have a data structure for multiple frames.
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Save Project"), QDir::homePath(), tr(""));
+    filePath.append(".ssp");
+    emit save(filePath, ui->canvas->getImage());
+}
+
+<<<<<<< HEAD
+void SpriteView::on_listWidget_clicked(const QModelIndex &index)
+{
+    int ready = index.row();
+    QImage currentImage = ui->canvas->getImage();
+    emit changeActiveFrame(currentImage, ready);
+}
+
+void SpriteView::on_addButton_clicked()
+{
+    QImage currentImage = ui->canvas->getImage();
+    emit addFrame(currentImage);
+}
+=======
+>>>>>>> fa910da24279d52eabbc15fa299a981ab8ba7cf4

@@ -1,0 +1,40 @@
+#ifndef SPRITE_H
+#define SPRITE_H
+#include <QObject>
+#include <QImage>
+#include <QVector>
+#include <QListWidgetItem>
+
+class sprite : public QObject
+{
+    Q_OBJECT
+private:
+    QVector<QImage> sprites;
+    int activeFrame;
+
+    void updateActiveImage(QImage &store);
+
+public:
+    sprite();
+
+public slots:
+    void load(QString fullFilename);
+<<<<<<< HEAD
+    void save(QString fullFilename);
+    void addFrame(QImage);
+    void updateActiveFrame(QImage, int);
+=======
+    void save(QString fullFilename, QImage activeImage);
+    void exportToPNG(QString fullFilename);
+    void exportToGIF(QString fullFilename);
+    void addFrame();
+    void changeActiveFrame(QListWidgetItem*);
+    void updateActiveFrame(QImage);
+>>>>>>> fa910da24279d52eabbc15fa299a981ab8ba7cf4
+
+signals:
+    void updateFrame(QImage&);
+    void updateList(int numFrames, int selected);
+};
+
+#endif // SPRITE_H
